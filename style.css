@@ -1,0 +1,819 @@
+/* Estilos gerais com animações e visual premium */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --primary-color: #212529;
+  --accent-color: #c9a96e;
+  --bg-dark: #000000;
+  --text-light: #ffffff;
+  --text-muted: #aaaaaa;
+  --section-bg: #0a0a0a;
+  --card-bg: #151515;
+  --shadow-color: rgba(201, 169, 110, 0.2);
+  --glow-effect: 0 0 15px rgba(201, 169, 110, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #000000 0%, #121212 100%);
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Header com efeito de gradiente e animação */
+header {
+  background: linear-gradient(to right, #0a0a0a, #1a1a1a, #0a0a0a);
+  padding: 25px;
+  text-align: center;
+  border-bottom: 1px solid #333;
+  position: relative;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--accent-color), transparent);
+}
+
+#logo {
+  max-width: 100px;
+  margin-bottom: 15px;
+  filter: drop-shadow(0 0 8px var(--shadow-color));
+  animation: pulseLogo 3s infinite alternate;
+}
+
+@keyframes pulseLogo {
+  from { transform: scale(1); filter: drop-shadow(0 0 5px var(--shadow-color)); }
+  to { transform: scale(1.05); filter: drop-shadow(0 0 15px var(--shadow-color)); }
+}
+
+h1 {
+  margin: 0;
+  font-size: 2.8em;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #ffffff, var(--accent-color), #ffffff);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shine 3s linear infinite;
+  font-weight: 700;
+}
+
+@keyframes shine {
+  to { background-position: 200% center; }
+}
+
+main {
+  flex: 1;
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 20px auto;
+  width: 90%;
+}
+
+/* Seções com efeitos de hover e sombras elegantes */
+section {
+  background-color: var(--section-bg);
+  padding: 40px;
+  margin-bottom: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+              box-shadow 0.4s ease;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to right, transparent, var(--accent-color), transparent);
+  transform: scaleX(0);
+  transition: transform 0.5s ease;
+}
+
+section:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), var(--glow-effect);
+}
+
+section:hover::before {
+  transform: scaleX(1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 35px;
+  color: var(--accent-color);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background-color: var(--accent-color);
+}
+
+/* Estilos dos Planos com cards elegantes */
+#planos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.plano {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  background-color: var(--card-bg);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.plano::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(201, 169, 110, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.plano:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(201, 169, 110, 0.2);
+  border-color: rgba(201, 169, 110, 0.3);
+}
+
+.plano:hover::before {
+  opacity: 1;
+}
+
+.plano h3 {
+  margin-top: 0;
+  color: var(--text-light);
+  font-size: 1.8em;
+  letter-spacing: 1px;
+}
+
+.plano p {
+  color: var(--text-muted);
+  font-size: 0.95em;
+  line-height: 1.6;
+}
+
+.plano .preco {
+  font-size: 2.2em;
+  font-weight: 700;
+  color: var(--accent-color);
+  margin: 20px 0;
+  text-shadow: 0 0 10px rgba(201, 169, 110, 0.3);
+}
+
+.plano button {
+  background: linear-gradient(45deg, #c9a96e, #e0c791);
+  color: #000000;
+  border: none;
+  padding: 14px 30px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(201, 169, 110, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.plano button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: 0.5s;
+}
+
+.plano button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(201, 169, 110, 0.5);
+}
+
+.plano button:hover::before {
+  left: 100%;
+}
+
+/* Estilos da Seção de Pagamento com animações */
+#pagamento {
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+#pagamento.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#qrcode-container img {
+  max-width: 220px;
+  margin: 30px auto;
+  display: block;
+  border: 5px solid var(--accent-color);
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(201, 169, 110, 0.2);
+  transition: transform 0.3s ease;
+  animation: qrPulse 2s infinite alternate;
+}
+
+@keyframes qrPulse {
+  0% { transform: scale(1); box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5), 0 0 10px rgba(201, 169, 110, 0.2); }
+  100% { transform: scale(1.03); box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(201, 169, 110, 0.4); }
+}
+
+#chave-pix-container {
+  margin-top: 30px;
+  animation: fadeIn 1s ease;
+}
+
+#chave-pix-container p {
+  margin-bottom: 15px;
+  color: var(--text-muted);
+  font-size: 1.05em;
+}
+
+#chave-pix {
+  width: 80%;
+  max-width: 450px;
+  padding: 15px;
+  margin-bottom: 15px;
+  border: 1px solid rgba(201, 169, 110, 0.3);
+  background-color: rgba(0, 0, 0, 0.3);
+  color: var(--text-light);
+  border-radius: 8px;
+  text-align: center;
+  font-family: 'Courier New', monospace;
+  font-size: 1.1em;
+  letter-spacing: 1px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#copiar-chave {
+  background: linear-gradient(45deg, #c9a96e, #e0c791);
+  color: #000000;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(201, 169, 110, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+#copiar-chave::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: 0.5s;
+}
+
+#copiar-chave:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(201, 169, 110, 0.5);
+}
+
+#copiar-chave:hover::before {
+  left: 100%;
+}
+
+/* Estilos da Seção do Cartão Virtual com efeitos 3D */
+#cartao-virtual {
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+#cartao-virtual.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#cartao-container {
+  position: relative;
+  max-width: 450px;
+  margin: 30px auto;
+  color: var(--text-light);
+  perspective: 1000px;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+#cartao-container:hover {
+  transform: rotateY(5deg) rotateX(5deg);
+}
+
+#cartao-img {
+  width: 100%;
+  display: block;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 20px rgba(201, 169, 110, 0.3);
+  filter: brightness(1.1) contrast(1.1);
+  transition: all 0.5s ease;
+}
+
+#cartao-container:hover #cartao-img {
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(201, 169, 110, 0.5);
+}
+
+#cartao-numero {
+  position: absolute;
+  bottom: 70px;
+  left: 25px;
+  font-size: 1.6em;
+  letter-spacing: 4px;
+  font-family: 'Courier New', monospace;
+  font-weight: 500;
+  color: #fff;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  animation: glowText 3s infinite alternate;
+}
+
+@keyframes glowText {
+  0% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.3); }
+  100% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.6); }
+}
+
+#cartao-validade {
+  position: absolute;
+  bottom: 40px;
+  right: 90px;
+  font-size: 1em;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+#cartao-cvv {
+  position: absolute;
+  bottom: 40px;
+  right: 35px;
+  font-size: 1em;
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+#cartao-logo {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  max-width: 60px;
+  opacity: 0.9;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3));
+  animation: rotateLogo 10s linear infinite;
+}
+
+@keyframes rotateLogo {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
+}
+
+/* Footer elegante com gradiente */
+footer {
+  background: linear-gradient(to right, #0a0a0a, #1a1a1a, #0a0a0a);
+  color: var(--text-muted);
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9em;
+  border-top: 1px solid #333;
+  margin-top: auto;
+  position: relative;
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--accent-color), transparent);
+}
+
+footer p {
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+/* Animações Gerais */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInFromLeft {
+  0% { transform: translateX(-50px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInFromRight {
+  0% { transform: translateX(50px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+/* Efeito de aparecimento dos elementos quando a página carrega */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Tooltip estilizado para informações adicionais */
+[data-tooltip] {
+  position: relative;
+  cursor: help;
+}
+
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 200px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background-color: rgba(201, 169, 110, 0.9);
+  color: #000;
+  font-size: 0.8em;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+[data-tooltip]:hover::after {
+  opacity: 1;
+  bottom: 135%;
+}
+
+/* Responsividade aprimorada */
+@media (max-width: 992px) {
+  h1 {
+    font-size: 2.4em;
+  }
+  
+  section {
+    padding: 30px;
+  }
+}
+
+/* Ajuste responsivo para telas menores */
+@media (max-width: 768px) {
+  .beneficios-container {
+    padding: 12px;
+  }
+  
+  .beneficios-lista li {
+    font-size: 0.85em;
+    padding-left: 18px;
+  }
+}
+
+  #logo {
+    max-width: 80px;
+  }
+
+  main {
+    padding: 30px 15px;
+    width: 95%;
+  }
+
+  section {
+    padding: 25px;
+    margin-bottom: 30px;
+  }
+
+  #planos {
+    grid-template-columns: 1fr;
+  }
+
+  #cartao-numero {
+    font-size: 1.3em;
+    bottom: 55px;
+    left: 20px;
+  }
+
+  #cartao-validade,
+  #cartao-cvv {
+    font-size: 0.9em;
+    bottom: 30px;
+  }
+
+  #cartao-validade {
+    right: 70px;
+  }
+  
+  #cartao-cvv {
+    right: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .beneficios-container h4 {
+    font-size: 1em;
+  }
+  
+  .beneficios-lista li {
+    font-size: 0.8em;
+    padding-left: 16px;
+    margin-bottom: 6px;
+  }
+
+
+  h2 {
+    font-size: 1.4em;
+  }
+
+  #logo {
+    max-width: 70px;
+  }
+
+  section {
+    padding: 20px;
+  }
+
+  .plano button,
+  #copiar-chave {
+    padding: 12px 20px;
+    font-size: 0.9em;
+  }
+
+  #chave-pix {
+    width: 95%;
+    font-size: 0.9em;
+  }
+
+  #cartao-numero {
+    font-size: 1.1em;
+    letter-spacing: 3px;
+    bottom: 45px;
+    left: 15px;
+  }
+
+  #cartao-validade,
+  #cartao-cvv {
+    font-size: 0.8em;
+    bottom: 25px;
+  }
+  
+  #cartao-validade {
+    right: 65px;
+  }
+  
+  #cartao-cvv {
+    right: 20px;
+  }
+  
+  #cartao-logo {
+    max-width: 40px;
+    top: 15px;
+    right: 15px;
+  }
+}
+
+/* Estilos para animação de carregamento da página */
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-content {
+  text-align: center;
+}
+
+.loader-spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  border-top-color: var(--accent-color);
+  animation: spin 1s linear infinite;
+  margin: 0 auto 15px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Classe para animação de entrada dos elementos quando visíveis */
+.animate-element {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.animate-element.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Efeito de brilho para destacar elementos importantes */
+.highlight {
+  position: relative;
+  overflow: hidden;
+}
+
+.highlight::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(201, 169, 110, 0.2) 0%, rgba(0, 0, 0, 0) 70%);
+  animation: pulseHighlight 2s infinite alternate;
+}
+
+@keyframes pulseHighlight {
+  0% { opacity: 0.5; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* Barra de progresso para páginas com múltiplos passos */
+.progress-container {
+  width: 100%;
+  margin: 20px auto;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  height: 8px;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #c9a96e, #e0c791);
+  width: 0;
+  transition: width 0.5s ease;
+  box-shadow: 0 0 10px rgba(201, 169, 110, 0.5);
+}
+
+/* Botão com efeito de onda ao clicar */
+.ripple-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-btn .ripple {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: scale(0);
+  animation: ripple 0.8s linear;
+  pointer-events: none;
+}
+
+/* Estilos para a seção de benefícios */
+.beneficios-container {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  padding: 15px;
+  margin: 15px 0 20px;
+  border: 1px solid rgba(201, 169, 110, 0.1);
+  text-align: left;
+  transition: all 0.3s ease;
+}
+
+.plano:hover .beneficios-container {
+  border-color: rgba(201, 169, 110, 0.3);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.beneficios-container h4 {
+  color: var(--accent-color);
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.1em;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.beneficios-lista {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.beneficios-lista li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 8px;
+  color: var(--text-light);
+  font-size: 0.9em;
+  line-height: 1.5;
+}
+
+.beneficios-lista li:last-child {
+  margin-bottom: 0;
+}
+
+.beneficios-lista li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
